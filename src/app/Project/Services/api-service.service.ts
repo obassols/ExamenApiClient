@@ -11,4 +11,8 @@ export class ApiServiceService {
   getQuadres(limit: number, page: number): any {
     return this.http.get('https://api.artic.edu/api/v1/artworks?page=' + page + '&limit=' + limit);
   }
+
+  getArtistInfo(id: string): any {
+    return this.http.get('https://api.artic.edu/api/v1/artists/' + id);
+  }
 }
