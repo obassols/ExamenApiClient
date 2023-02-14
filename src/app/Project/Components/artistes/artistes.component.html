@@ -14,7 +14,7 @@
   <tr *ngFor="let quadre of quadres">
     <td>{{ quadre.title }}</td>
     <td><img [src]="quadre.thumbnail ? quadre.thumbnail.lqip : ''"  [alt]="quadre.thumbnail ? quadre.thumbnail.alt_text : ''" /></td>
-    <td>{{ quadre.artist.name }}</td>
-    <td>{{ quadre.artist.birth }}</td>
-    <td>{{ quadre.artist.death }}</td>
+    <td>{{ quadre.artista.nom }}</td>
+    <td>{{ quadre.artista.naixament }}</td>
+    <td>{{ quadre.artista.mort }}</td>
 </table>
