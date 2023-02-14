@@ -11,7 +11,7 @@ export class QuadresComponent implements OnInit {
 
   paginaActual = 1;
   paginesTotals = 1;
-  limitQuadres = 12;
+  limitQuadres = 15;
 
   quadres = Array<any>();
 
@@ -57,6 +57,7 @@ export class QuadresComponent implements OnInit {
     if (this.midaImatges >= 50 && this.midaImatges <= 1000) {
       this.imatge.url = 'https://www.artic.edu/iiif/2/' + quadre.image_id + '/full/' + this.midaImatges + ',/0/default.jpg';
       this.imatge.alt = quadre.medium_display;
+      this.imatge.info = false;
       if (quadre.artist_id) {
         this.apiService.getArtistInfo(quadre.artist_id).subscribe((response: any) => {
           const data = response.data;
