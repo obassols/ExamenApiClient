@@ -6,11 +6,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { QuadresComponent } from './Project/Components/quadres/quadres.component';
+import { ArtistesComponent } from './Project/Components/artistes/artistes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuadresComponent
+    QuadresComponent,
+    ArtistesComponent
   ],
   imports: [
     BrowserModule,

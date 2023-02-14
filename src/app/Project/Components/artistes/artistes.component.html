@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th>Titol</th>
+    <th>Imatge</th>
+    <th colspan="3">Artista</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th></th>
+    <th>Name</th>
+    <th>Birth</th>
+    <th>Death</th>
+  </tr>
+  <tr *ngFor="let quadre of quadres">
+    <td>{{ quadre.title }}</td>
+    <td><img [src]="quadre.thumbnail ? quadre.thumbnail.lqip : ''"  [alt]="quadre.thumbnail ? quadre.thumbnail.alt_text : ''" /></td>
+    <td>{{ quadre.artist.name }}</td>
+    <td>{{ quadre.artist.birth }}</td>
+    <td>{{ quadre.artist.death }}</td>
+</table>
