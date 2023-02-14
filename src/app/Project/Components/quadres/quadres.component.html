@@ -1,0 +1,33 @@
+<h2>LListat de quadres</h2>
+
+<p>Mida imatges: 
+  <input type="number" [(ngModel)]="midaImatges" />
+</p>
+
+<h3>Pagina {{ paginaActual }} de {{ paginesTotals }}</h3>
+
+<table>
+  <tr>
+    <th>Titol</th>
+    <th>Id</th>
+    <th>Imatge</th>
+    <th>Visualitzar</th>
+  </tr>
+  <tr *ngFor="let quadre of quadres">
+    <td>{{ quadre.title }}</td>
+    <td>{{ quadre.id }}</td>
+    <td><img [src]="quadre.thumbnail.lqip" /></td>
+    <td><a (click)="veureImatge(quadre.id)">Visualitzar</a></td>
+  </tr>
+</table>
+<p>
+  <span>Documents per plana: </span>
+  <input type="number" [(ngModel)]="limitQuadres" />
+  <span>Plana: </span>
+  <input type="number" [(ngModel)]="paginaAccedir" />
+  <button (click)="canviarPagina(paginaAccedir)">Accedir</button>
+  <span>Primera</span>
+  <span>Anterior</span>
+  <span>Seguent</span>
+  <span>Ultima</span>
+</p>
