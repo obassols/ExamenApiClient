@@ -6,28 +6,42 @@
 
 <h3>Pagina {{ paginaActual }} de {{ paginesTotals }}</h3>
 
-<table>
-  <tr>
-    <th>Titol</th>
-    <th>Id</th>
-    <th>Imatge</th>
-    <th>Visualitzar</th>
-  </tr>
-  <tr *ngFor="let quadre of quadres">
-    <td>{{ quadre.title }}</td>
-    <td>{{ quadre.id }}</td>
-    <td><img [src]="quadre.thumbnail ? quadre.thumbnail.lqip : ''"  [alt]="quadre.thumbnail ? quadre.thumbnail.alt_text : ''" /></td>
-    <td><button (click)="veureImatge(quadre.id)">Visualitzar</button></td>
-  </tr>
-</table>
-<p>
-  <span>Documents per plana: </span>
-  <input type="number" [(ngModel)]="limitQuadres" />
-  <span>Plana: </span>
-  <input type="number" [(ngModel)]="paginaAccedir" />
-  <button (click)="canviarPagina(paginaAccedir)">Accedir</button>
-  <button (click)="canviarPagina(1)">Primera</button>
-  <button [disabled]="paginaActual == 1" (click)="canviarPagina(paginaActual - 1)">Anterior</button>
-  <button [disabled]="paginaActual == paginesTotals" (click)="canviarPagina(paginaActual + 1)">Seguent</button>
-  <button (click)="canviarPagina(paginesTotals)">Ultima</button>
-</p>
+<div class="flex">
+  <div>
+    <table>
+      <tr>
+        <th>Titol</th>
+        <th>Id</th>
+        <th>Imatge</th>
+        <th>Visualitzar</th>
+      </tr>
+      <tr *ngFor="let quadre of quadres">
+        <td>{{ quadre.title }}</td>
+        <td>{{ quadre.id }}</td>
+        <td><img [src]="quadre.thumbnail ? quadre.thumbnail.lqip : ''"  [alt]="quadre.thumbnail ? quadre.thumbnail.alt_text : ''" (click)="veureImatge(quadre)" /></td>
+        <td><button [disabled]="!quadre.thumbnail" (click)="veureImatge(quadre)">Visualitzar</button></td>
+      </tr>
+    </table>
+    <p>
+      <span>Documents per plana: </span>
+      <input type="number" [(ngModel)]="limitQuadres" />
+      <span>Plana: </span>
+      <input type="number" [(ngModel)]="paginaAccedir" />
+      <button (click)="canviarPagina(paginaAccedir)">Accedir</button>
+      <button (click)="canviarPagina(1)">Primera</button>
+      <button [disabled]="paginaActual == 1" (click)="canviarPagina(paginaActual - 1)">Anterior</button>
+      <button [disabled]="paginaActual == paginesTotals" (click)="canviarPagina(paginaActual + 1)">Seguent</button>
+      <button (click)="canviarPagina(paginesTotals)">Ultima</button>
+    </p>
+  </div>
+
+  <div *ngIf="imatge.url">
+    <h3>Imatge</h3>
+    <img [src]="imatge.url" [alt]="imatge.alt" (click)="imatge.info = !imatge.info"/>
+    <div *ngIf="imatge.info">
+      <p>Nom: {{ imatge.nom }}</p>
+      <p>Data Naixament: {{ imatge.naixament }}</p>
+      <p>Data Mort: {{ imatge.mort }}</p>
+    </div>
+  </div>
+</div>

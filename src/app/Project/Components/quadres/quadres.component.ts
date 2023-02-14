@@ -15,7 +15,14 @@ export class QuadresComponent implements OnInit {
 
   quadres = Array<any>();
 
-  imatgeUrl = '';
+  imatge = {
+    url: '',
+    alt: '',
+    info: false,
+    nom: '',
+    naixament: '',
+    mort: ''
+  };
 
   paginaAccedir = 1;
 
@@ -42,7 +49,21 @@ export class QuadresComponent implements OnInit {
     this.getQuadres();
   }
 
-  veureImatge(url: string): void {
-    // Test
+  veureImatge(quadre: any): void {
+    this.imatge.url = 'https://www.artic.edu/iiif/2/' + quadre.image_id + '/full/' + this.midaImatges + ',/0/default.jpg';
+    this.imatge.alt = quadre.medium_display;
+    if (quadre.artist_id) {
+      this.apiService.getArtistInfo(quadre.artist_id).subscribe((response: any) => {
+        const data = response.data;
+        console.log(data);
+        this.imatge.nom = data.title ? data.title : 'Desconegut';
+        this.imatge.naixament = data.birth_date ? data.birth_date : 'Desconeguda';
+        this.imatge.mort = data.death_date ? data.death_date : 'Desconeguda';
+      });
+    } else {
+      this.imatge.nom = 'Desconegut';
+      this.imatge.naixament = 'Desconeguda';
+      this.imatge.mort = 'Desconeguda';
+    }
   }
 }
