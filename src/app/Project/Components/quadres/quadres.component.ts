@@ -45,27 +45,33 @@ export class QuadresComponent implements OnInit {
   }
 
   canviarPagina(pagina: number): void {
-    if (pagina > 0) {
+    if (pagina > 0 && pagina <= this.paginesTotals && this.limitQuadres > 0 && this.limitQuadres <= 100) {
       this.paginaActual = pagina;
       this.getQuadres();
+    } else {
+      alert('Dades Incorrectes');
     }
   }
 
   veureImatge(quadre: any): void {
-    this.imatge.url = 'https://www.artic.edu/iiif/2/' + quadre.image_id + '/full/' + this.midaImatges + ',/0/default.jpg';
-    this.imatge.alt = quadre.medium_display;
-    if (quadre.artist_id) {
-      this.apiService.getArtistInfo(quadre.artist_id).subscribe((response: any) => {
-        const data = response.data;
-        console.log(data);
-        this.imatge.nom = data.title ? data.title : 'Desconegut';
-        this.imatge.naixament = data.birth_date ? data.birth_date : 'Desconeguda';
-        this.imatge.mort = data.death_date ? data.death_date : 'Desconeguda';
-      });
+    if (this.midaImatges >= 50 && this.midaImatges <= 1000) {
+      this.imatge.url = 'https://www.artic.edu/iiif/2/' + quadre.image_id + '/full/' + this.midaImatges + ',/0/default.jpg';
+      this.imatge.alt = quadre.medium_display;
+      if (quadre.artist_id) {
+        this.apiService.getArtistInfo(quadre.artist_id).subscribe((response: any) => {
+          const data = response.data;
+          console.log(data);
+          this.imatge.nom = data.title ? data.title : 'Desconegut';
+          this.imatge.naixament = data.birth_date ? data.birth_date : 'Desconeguda';
+          this.imatge.mort = data.death_date ? data.death_date : 'Desconeguda';
+        });
+      } else {
+        this.imatge.nom = 'Desconegut';
+        this.imatge.naixament = 'Desconeguda';
+        this.imatge.mort = 'Desconeguda';
+      }
     } else {
-      this.imatge.nom = 'Desconegut';
-      this.imatge.naixament = 'Desconeguda';
-      this.imatge.mort = 'Desconeguda';
+      alert('Mides de la imatge incorrectes');
     }
   }
 }
