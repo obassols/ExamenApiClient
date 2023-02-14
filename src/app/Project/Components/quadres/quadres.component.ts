@@ -26,7 +26,7 @@ export class QuadresComponent implements OnInit {
   }
 
   getQuadres(): void {
-    this.apiService.getQuadres(this.paginaActual, this.limitQuadres).subscribe((data: any) => {
+    this.apiService.getQuadres(this.limitQuadres, this.paginaActual).subscribe((data: any) => {
 
       this.paginaActual = data.pagination.current_page;
       this.paginesTotals = data.pagination.total_pages;

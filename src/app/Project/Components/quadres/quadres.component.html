@@ -16,8 +16,8 @@
   <tr *ngFor="let quadre of quadres">
     <td>{{ quadre.title }}</td>
     <td>{{ quadre.id }}</td>
-    <td><img [src]="quadre.thumbnail.lqip" /></td>
-    <td><a (click)="veureImatge(quadre.id)">Visualitzar</a></td>
+    <td><img [src]="quadre.thumbnail ? quadre.thumbnail.lqip : ''"  [alt]="quadre.thumbnail ? quadre.thumbnail.alt_text : ''" /></td>
+    <td><button (click)="veureImatge(quadre.id)">Visualitzar</button></td>
   </tr>
 </table>
 <p>
@@ -26,8 +26,8 @@
   <span>Plana: </span>
   <input type="number" [(ngModel)]="paginaAccedir" />
   <button (click)="canviarPagina(paginaAccedir)">Accedir</button>
-  <span>Primera</span>
-  <span>Anterior</span>
-  <span>Seguent</span>
-  <span>Ultima</span>
+  <button (click)="canviarPagina(1)">Primera</button>
+  <button [disabled]="paginaActual == 1" (click)="canviarPagina(paginaActual - 1)">Anterior</button>
+  <button [disabled]="paginaActual == paginesTotals" (click)="canviarPagina(paginaActual + 1)">Seguent</button>
+  <button (click)="canviarPagina(paginesTotals)">Ultima</button>
 </p>
