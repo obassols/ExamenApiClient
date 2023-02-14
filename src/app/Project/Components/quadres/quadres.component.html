@@ -1,7 +1,7 @@
 <h2>LListat de quadres</h2>
 
 <p>Mida imatges: 
-  <input type="number" [(ngModel)]="midaImatges" />
+  <input type="number" [(ngModel)]="midaImatges" min="50"/>
 </p>
 
 <h3>Pagina {{ paginaActual }} de {{ paginesTotals }}</h3>
@@ -24,9 +24,9 @@
     </table>
     <p>
       <span>Documents per plana: </span>
-      <input type="number" [(ngModel)]="limitQuadres" />
+      <input type="number" [(ngModel)]="limitQuadres"  min="1"/>
       <span>Plana: </span>
-      <input type="number" [(ngModel)]="paginaAccedir" />
+      <input type="number" [(ngModel)]="paginaAccedir"  min="1"/>
       <button (click)="canviarPagina(paginaAccedir)">Accedir</button>
       <button (click)="canviarPagina(1)">Primera</button>
       <button [disabled]="paginaActual == 1" (click)="canviarPagina(paginaActual - 1)">Anterior</button>

@@ -45,8 +45,10 @@ export class QuadresComponent implements OnInit {
   }
 
   canviarPagina(pagina: number): void {
-    this.paginaActual = pagina;
-    this.getQuadres();
+    if (pagina > 0) {
+      this.paginaActual = pagina;
+      this.getQuadres();
+    }
   }
 
   veureImatge(quadre: any): void {
